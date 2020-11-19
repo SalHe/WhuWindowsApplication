@@ -69,9 +69,9 @@ namespace ThreadCommunication
                 int id = currentConsumerCount;
                 while (allowConsume.WaitOne())
                 {
-                    canConsume.WaitOne();
                     lock (consumeLock)
                     {
+                        canConsume.WaitOne();
                         if (productId >= productList.Count)
                         {
                             ConsumeProduct("EXIT", $"Consumer {id}");
